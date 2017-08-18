@@ -1,0 +1,105 @@
+
+%% Spring 2017 #2
+w = -pi/2:0.01:pi/2;
+
+r = cos(w-pi/8);
+
+figure(1)
+plot(w,r);
+
+z = sin(2*w);
+
+figure(2)
+plot(w,z);
+
+%% Spring 2017 #3
+clear
+close all
+
+xmin = -10;
+xmax = 20;
+
+ymin = -10;
+ymax =20;
+
+% min:1:max
+
+[x,y] = meshgrid(xmin:1:xmax,ymin:1:ymax);
+
+z = (x.^2)/2-(y.^2)/8;
+
+surf(x,y,z);
+% zlim([-5 15])
+xlabel('x');
+ylabel('y');
+zlabel('z');
+hold on
+x1 = -2;
+y1 = 5;
+z1 = -9/8;
+
+hi = [x1 y1 z1];
+
+
+
+A = -8;
+B = -5;
+C = -4;
+D = 4.5;
+% x = [1 -1 -1 1]; % Generate data for x vertices
+% y = [1 1 -1 -1]; % Generate data for y vertices
+% z = -1/C*(A*x + B*y + D); % Solve for z vertices data
+% patch(x, y, z);
+
+
+
+% [x y] = meshgrid(-1:0.1:1); % Generate x and y data
+z = -1/C*(A*x + B*y + D); % Solve for z data
+surf(x,y,z) %Plot the surface
+
+
+scatter3(hi(1),hi(2),hi(3),300,'filled')
+
+% v = [-4, -5/2, -2];
+v = [-5/2,-4, -2];
+% vnorm = -v;
+vnorm = -30*v/norm(v);
+
+hi1 = hi+vnorm;
+
+line([hi(1) hi1(1)],[hi(2) hi1(2)],[hi(3) hi1(3)],'Color','black');
+
+hold on
+% scatter3(hi1(1),hi1(2),hi1(3),500,'filled')
+
+
+
+% scatter3(x1+4,y1+5/2,z1+100,500,'filled','r')
+% scatter3(x1+vnorm(1),y1+vnorm(2),z1+vnorm(3),500,'filled','g')
+% scatter3(x1+vnorm(1),y1+vnorm(2),z1+vnorm(3),500,'filled','g')
+% scatter3(z1+vnorm(3),x1+vnorm(2),y1+vnorm(3),500,'filled','g')
+% scatter3(21.4215,19.6384,10.5857,500,'filled','k')
+% scatter3(21.4215,19.6384,181.2320,500,'filled','k')
+
+% scatter3(19.6384,21.4215,135.4733,500,'filled','k')
+
+% scatter3(-y1*z1/2,2*x1*z1,(x1^2)-((y1^2)/4)-4*z1,500,'filled','k')
+% scatter3(-y1*z1/2,2*x1*z1,(x1^2)-((y1^2)/4)-4*z1,500,'filled','k')
+% scatter3(-2*x1*z1,y1*z1/2,-(x1^2)-((y1^2)/4)-4*z1,500,'filled','k')
+% scatter3(2*x1*z1,-y1*z1/2,((x1^2)-((y1^2)/4)-4*z1),500,'filled','k')
+% scatter3(23.4215,14.6384,(23.4215^2 - (14.6384^2)/4)/2,500,'filled')
+
+% (23.4215^2 - (14.6384^2)/4)/2
+
+% scatter3(4,5/2,2,500,'filled','k')
+% scatter3(-5/2,-4,-2,100,'filled')
+
+%%
+
+p1 = [-2 5 -9/8];
+p2 = [0 0 9/8];
+p3 = [0 9/10 0];
+
+hi3 = cross(p2+p1,p3+p1)
+
+line([hi(1) hi(1)+hi3(1)],[hi(2) hi(2)+hi3(2)],[hi(3) hi(3)+hi3(3)],'Color','black');
